@@ -2,8 +2,8 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-template<typename Iter>
-bool next_permutation(Iter first, Iter last) {
+template <typename Iter>
+bool next_permutation_1(Iter first, Iter last) {
     auto rfirst = reverse_iterator<Iter>(last);
     auto rlast = reverse_iterator<Iter>(first);
 
@@ -13,13 +13,13 @@ bool next_permutation(Iter first, Iter last) {
         reverse(rfirst, rlast);
         return true;
     }
-    auto change = find_if(rfirst, pivot, bind1st(less<int>(), *prev(pivot)));
-    swap(*change, *prev(pivot));
+    auto change = find_if(rfirst, pivot, bind1st(less<int>(), *pivot));
+    swap(*change, *pivot);
     reverse(rfirst, pivot);
     return false;
 }
-void nextPermutation(vector<int> &num) {
-    next_permutation(num.begin(), num.end());
+void nextPermutation_1(vector<int> &num) {
+    next_permutation_1(num.begin(), num.end());
     for (auto i : num)
         cout << i << " ";
     cout << endl;
@@ -27,6 +27,6 @@ void nextPermutation(vector<int> &num) {
 
 int main() {
     vector<int> num = {6, 8, 7, 4, 3, 2};
-    nextPermutation(num);
+    nextPermutation_1(num);
     return 0;
 }
