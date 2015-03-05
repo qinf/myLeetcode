@@ -1,3 +1,4 @@
+//另一种思路: 使用快慢指针避免扫描整个链表,找到后一半链表反转
 #include "Struct.h"
 using namespace std;
 ListNode *reverseList(ListNode *L) {
