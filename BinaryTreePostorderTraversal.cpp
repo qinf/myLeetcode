@@ -47,13 +47,36 @@ vector<int> postorderTraversal2(TreeNode *root) {
     }
     return result;
 }
+
+vector<int> postorderTraversal3(TreeNode *root) {
+    vector<int> v;
+    vector<TreeNode *> stack;
+    TreeNode *node = root, *lastvisit = nullptr;
+    while (stack.size() > 0 || node != nullptr) {
+        if (node != nullptr) {
+            stack.push_back(node);
+            node = node->left;
+        } else {
+            TreeNode *n = stack.back();
+            if (n->right != nullptr && n->right != lastvisit) {
+                node = n->right;
+            } else {
+                v.push_back(n->val);
+                stack.pop_back();
+                lastvisit = n;
+            }
+        }
+    }
+    return v;
+}
+
 int main() {
     TreeNode head(1);
     TreeNode l1(2);
     TreeNode l2(3);
     head.left = &l1;
     head.right = &l2;
-    vector<int> vec = postorderTraversal2(&head);
+    vector<int> vec = postorderTraversal3(&head);
     for (auto i : vec)
         cout << i << " ";
     cout << endl;
