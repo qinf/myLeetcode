@@ -23,21 +23,21 @@ public:
         for (auto i : num) {
             ++map_count[i];
         }
-        dfs(num, path, map_count, result);
+        bfs(num, path, map_count, result);
         return result;
     }
 /*
  * 为啥要遍历map而不是遍历num?
  */
 private:
-    void dfs(const vector<int> &num, vector<int> &path, const map<int, int> &map_count, vector<vector<int> > &result) {
+    void bfs(const vector<int> &num, vector<int> &path, const map<int, int> &map_count, vector<vector<int> > &result) {
         if (path.size() == num.size())
             result.push_back(path);
         for(auto &p : map_count) {
             auto times = count(path.begin(), path.end(), p.first);
             if (times < p.second) {
                 path.push_back(p.first);
-                dfs(num, path, map_count, result);
+                bfs(num, path, map_count, result);
                 path.pop_back();
             }
         }

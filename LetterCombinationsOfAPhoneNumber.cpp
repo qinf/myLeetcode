@@ -27,18 +27,18 @@ public:
         if (digits.empty())
             return result;
         string path;
-        dfs(digits, 0, path, result);
+        bfs(digits, 0, path, result);
         return result;
     }
 private:
-    void dfs(const string &digits, size_t cur, string &path, vector<string> &result) {
+    void bfs(const string &digits, size_t cur, string &path, vector<string> &result) {
         if (path.size() == digits.size()) {
             result.push_back(path);
             return;
         }
         for (auto c : keybord[digits[cur] - '0']) {
             path.push_back(c);
-            dfs(digits, cur + 1, path, result);
+            bfs(digits, cur + 1, path, result);
             path.pop_back();
         }
     }

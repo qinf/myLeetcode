@@ -30,11 +30,11 @@ public:
             num.push_back(i+1);
         vector<int> path;
         vector<vector<int> > result;
-        dfs(num, path, k, result);
+        bfs(num, path, k, result);
         return result;
     }
 private:
-    void dfs(const vector<int> &num, vector<int> &path, const int k, vector<vector<int> > &result) {
+    void bfs(const vector<int> &num, vector<int> &path, const int k, vector<vector<int> > &result) {
         if (path.size() == k) {
             result.push_back(path);
             return;
@@ -43,7 +43,7 @@ private:
             if (find(path.begin(), path.end(), i) == path.end()) {
                 if (path.empty() || i > path.back()) {
                     path.push_back(i);
-                    dfs(num, path, k, result);
+                    bfs(num, path, k, result);
                     path.pop_back();
                 }
             }
